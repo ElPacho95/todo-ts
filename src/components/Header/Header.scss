@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  align-items: center;
+  border: 1px solid #efefef;
+  background: white;
+  position: sticky;
+  top: 0;
+
+  .profile {
+    display: flex;
+    align-items: center;
+    .user-image{
+      img {
+        width: 52px;
+        height: 52px;
+        border-radius: 25px;
+      }
+    }
+  }
+  .form {
+    display: flex;
+    align-items: center;
+    .submit {
+      button {
+        border-radius: 8px;
+        border: 1px solid gray;
+        height: 30px;
+        color: rgb(0,0,0,0.7);
+        background: #efefef;
+      }
+    }
+    .form-bg {
+      width: 252px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      background: #efefef;
+    }
+    img {
+      padding-left: 12px;
+    }
+    input {
+      padding-left: 10px;
+      outline: none;
+      flex: 1;
+      height: 36px;
+      background: transparent;
+      font-weight: 400;
+      font-size: 16px;
+      border: none;
+    }
+  }
+}
