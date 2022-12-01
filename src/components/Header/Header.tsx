@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import search from "../../assets/search.svg";
 import "./Header.scss";
+import { useTypedSelector } from "../../store/hooks/useTypedSelector";
+import { useAction } from "../../store/hooks/useAction";
+import { fetchTags } from "../../store/action-creators/tags";
 
 const Header: React.FC = () => {
+  const { error, profile } = useTypedSelector(
+    (state) => state.profile
+  );
+  const tagsLoading = useTypedSelector(state => state.tags.loading)
+  const profileLoading =useTypedSelector(state => state.profile.loading)
+  const {tags} = useTypedSelector(state => state.tags)
+
+  const { fetchProfile, fetchTags } = useAction();
+  useEffect(() => {
+    fetchProfile();
+    fetchTags();
+  }, []);
+
+  if (profileLoading && tagsLoading) {
+    return <h1>loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>{error}</h1>;
+  }
+  console.log(tags)
   return (
     <div className="header">
       <div className="form">
@@ -25,12 +49,9 @@ const Header: React.FC = () => {
       </div>
       <div className="profile">
         <div className="user-image">
-          <img
-            src="https://www.sosyncd.com/wp-content/uploads/2022/06/139.png"
-            alt=""
-          />
+          <img src={profile.profile_img} alt="" />
         </div>
-        <div className="user-name">say my name</div>
+        <div className="user-name">{profile.username}</div>
       </div>
     </div>
   );

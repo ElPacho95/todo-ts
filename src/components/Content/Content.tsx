@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import "./content.scss";
 
-import {
-  useAppDispatch,
-  useTypedSelector,
-} from "../../store/hooks/useTypedSelector";
-import { fetchTodos } from "../../store/action-creators/get";
+import { useTypedSelector } from "../../store/hooks/useTypedSelector";
+import { fetchTodos } from "../../store/action-creators/todo";
+import { useAction } from "../../store/hooks/useAction";
 
 const Content: React.FC = () => {
   const { todos, error, loading } = useTypedSelector((state) => state.todo);
-  const dispatch = useAppDispatch();
+  const { fetchTodos } = useAction();
   useEffect(() => {
-    dispatch(fetchTodos());
-  }, [dispatch]);
+    fetchTodos();
+  }, []);
   if (loading) {
     return <h1>loading...</h1>;
   }
@@ -20,11 +18,16 @@ const Content: React.FC = () => {
   if (error) {
     return <h1>{error}</h1>;
   }
-  console.log(todos);
   return (
     <div className="content">
       {todos.map((item) => {
-        return <div key={item.id}>{item.title}</div>;
+        return (
+          <div className="list" key={item.id}>
+            <input type="checkbox" checked={item.completed} />
+            {item.title}
+            <button className="delete">X</button>
+          </div>
+        );
       })}
     </div>
   );

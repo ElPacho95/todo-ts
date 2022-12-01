@@ -3,4 +3,18 @@
   border: 1px solid black;
   height: 500px;
   margin: 20px auto;
+  .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
+    height: 40px;
+    border-bottom: 1px solid black;
+  }
+  .delete {
+    background: transparent;
+    border: 1px solid red;
+    color: red;
+    cursor: pointer;
+  }
 }
