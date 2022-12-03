@@ -3,12 +3,12 @@ import { todoReducer } from "./reducers/todoReducer";
 import { profileReducer } from "./reducers/profileReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import {tagsReducer} from "./reducers/tagsReducer";
+import { tagsReducer } from "./reducers/tagsReducer";
 
 const rootReducer = combineReducers({
   todo: todoReducer,
   profile: profileReducer,
-  tags: tagsReducer
+  tags: tagsReducer,
 });
 
 export const store = createStore(

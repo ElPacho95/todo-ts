@@ -4,10 +4,14 @@ import "./content.scss";
 import { useTypedSelector } from "../../store/hooks/useTypedSelector";
 import { fetchTodos } from "../../store/action-creators/todo";
 import { useAction } from "../../store/hooks/useAction";
+import TodoList from "./TodoList";
 
 const Content: React.FC = () => {
   const { todos, error, loading } = useTypedSelector((state) => state.todo);
-  const { fetchTodos } = useAction();
+  const { fetchTodos, fetchChangeCheckbox } = useAction();
+  const changeCheckbox = (checked: boolean, id: number) => {
+    fetchChangeCheckbox(checked, id)
+  }
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -22,11 +26,7 @@ const Content: React.FC = () => {
     <div className="content">
       {todos.map((item) => {
         return (
-          <div className="list" key={item.id}>
-            <input type="checkbox" checked={item.completed} />
-            {item.title}
-            <button className="delete">X</button>
-          </div>
+          <TodoList changeCheckbox={changeCheckbox} title={item.title} completed={item.completed} id={item.id} key={item.id}/>
         );
       })}
     </div>

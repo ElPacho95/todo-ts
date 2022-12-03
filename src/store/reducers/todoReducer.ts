@@ -1,4 +1,11 @@
-import { TodoAction, TodosActionsTypes, TodoState } from "../types/todo";
+import {
+  ChangeCheckboxAction,
+  DeleteTodoAction,
+  NewTodoAction,
+  TodoAction,
+  TodosActionsTypes,
+  TodoState,
+} from "../types/todo";
 
 const initialState: TodoState = {
   todos: [],
@@ -8,7 +15,7 @@ const initialState: TodoState = {
 
 export const todoReducer = (
   state = initialState,
-  action: TodoAction
+  action: TodoAction | NewTodoAction | DeleteTodoAction | ChangeCheckboxAction
 ): TodoState => {
   switch (action.type) {
     case TodosActionsTypes.FETCH_TODOS:
@@ -17,6 +24,44 @@ export const todoReducer = (
       return { ...state, loading: false, error: null, todos: action.payload };
     case TodosActionsTypes.FETCH_TODOS_ERROR:
       return { ...state, loading: false, error: action.payload };
+    case TodosActionsTypes.FETCH_ADD_TODOS:
+      return { ...state, loading: true, error: null };
+    case TodosActionsTypes.FETCH_ADD_TODOS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        todos: [action.payload, ...state.todos],
+      };
+    case TodosActionsTypes.FETCH_ADD_TODOS_ERROR:
+      return { ...state, loading: false, error: action.payload };
+    case TodosActionsTypes.FETCH_DELETE_TODOS:
+      return { ...state, loading: true, error: null };
+    case TodosActionsTypes.FETCH_DELETE_TODOS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        todos: state.todos.filter((item) => item.id !== action.payload),
+      };
+    case TodosActionsTypes.FETCH_DELETE_TODOS_ERROR:
+      return { ...state, loading: false, error: action.payload };
+    case TodosActionsTypes.FETCH_CHANGE_CHECKBOX:
+      return { ...state, loading: true, error: null };
+    case TodosActionsTypes.FETCH_CHANGE_CHECKBOX_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        todos: state.todos.map((item) =>
+          item.id === action.payload.id
+            ? {
+                ...item,
+                checked: action.payload.checked,
+              }
+            : item
+        ),
+      };
     default:
       return state;
   }

@@ -5,5 +5,5 @@ import * as TagsActionsTypes from "./tags";
 export default {
   ...TodoActionCreators,
   ...ProfileActionCreators,
-  ...TagsActionsTypes
+  ...TagsActionsTypes,
 };

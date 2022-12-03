@@ -1,5 +1,5 @@
-import { TodoAction, TodosActionsTypes } from "../types/todo";
-import { Dispatch } from "redux";
+import {ChangeCheckboxAction, DeleteTodoAction, NewTodoAction, TodoAction, TodosActionsTypes,} from "../types/todo";
+import {Dispatch} from "redux";
 import axios from "axios";
 
 export const fetchTodos = () => {
@@ -14,6 +14,63 @@ export const fetchTodos = () => {
     } catch (e) {
       dispatch({
         type: TodosActionsTypes.FETCH_TODOS_ERROR,
+        payload: "Ошибка при загрузке данных",
+      });
+    }
+  };
+};
+
+export const fetchNewTodo = (body: {
+  completed: boolean;
+  title: string;
+  tags: string[];
+}) => {
+  return async (dispatch: Dispatch<NewTodoAction>) => {
+    try {
+      dispatch({ type: TodosActionsTypes.FETCH_ADD_TODOS });
+      const response = await axios.post(" http://localhost:3000/todos", body);
+      dispatch({
+        type: TodosActionsTypes.FETCH_ADD_TODOS_SUCCESS,
+        payload: response.data,
+      });
+    } catch (e) {
+      dispatch({
+        type: TodosActionsTypes.FETCH_ADD_TODOS_ERROR,
+        payload: "Ошибка при загрузке данных",
+      });
+    }
+  };
+};
+
+export const fetchDeleteTodo = (id: number) => {
+  return async (dispatch: Dispatch<DeleteTodoAction>) => {
+    try {
+      dispatch({ type: TodosActionsTypes.FETCH_DELETE_TODOS });
+      await axios.delete(`http://localhost:3000/todos/${id}`);
+      dispatch({
+        type: TodosActionsTypes.FETCH_DELETE_TODOS_SUCCESS,
+        payload: id,
+      });
+    } catch (e) {
+      dispatch({
+        type: TodosActionsTypes.FETCH_DELETE_TODOS_ERROR,
+        payload: "Ошибка при загрузке данных",
+      });
+    }
+  };
+};
+export const fetchChangeCheckbox = (checked: boolean, id: number) => {
+  return async (dispatch: Dispatch<ChangeCheckboxAction>) => {
+    try {
+      dispatch({ type: TodosActionsTypes.FETCH_CHANGE_CHECKBOX });
+      await axios.patch(`http://localhost:3000/todos/${id}`, checked);
+      dispatch({
+        type: TodosActionsTypes.FETCH_CHANGE_CHECKBOX_SUCCESS,
+        payload: {checked, id},
+      });
+    } catch (e) {
+      dispatch({
+        type: TodosActionsTypes.FETCH_CHANGE_CHECKBOX_ERROR,
         payload: "Ошибка при загрузке данных",
       });
     }

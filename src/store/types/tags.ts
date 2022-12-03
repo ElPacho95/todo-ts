@@ -1,4 +1,3 @@
-
 export interface TagsState {
   tags: string[];
   loading: boolean;

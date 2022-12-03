@@ -4,48 +4,72 @@
       "id": 1,
       "title": "Поступить в UNICODE",
       "completed": true,
-      "tags": ["education", "career"]
+      "tags": [
+        "education",
+        "career"
+      ],
+      "true": ""
     },
     {
       "id": 2,
       "title": "Успешно окончить обучение, выполняя все рекомендации",
       "completed": false,
-      "tags": ["education", "career"]
+      "tags": [
+        "education",
+        "career"
+      ]
     },
     {
       "id": 3,
       "title": "Стать успешным и выскокоплачиваемым специалистом",
       "completed": false,
-      "tags": ["career", "success"]
+      "tags": [
+        "career",
+        "success"
+      ]
     },
     {
       "id": 4,
       "title": "Купить камри 2.5 12-го года",
       "completed": false,
-      "tags": ["success", "chechen", "achievement"]
+      "tags": [
+        "success",
+        "chechen",
+        "achievement"
+      ]
     },
     {
       "id": 5,
       "title": "Накинуть второй глушитель",
       "completed": false,
-      "tags": ["pure-success", "chechen"]
+      "tags": [
+        "pure-success",
+        "chechen"
+      ]
     },
     {
       "id": 6,
       "title": "Переодеть камри в рестайлинг v55",
       "completed": false,
-      "tags": ["successful-success", "chechen"]
+      "tags": [
+        "successful-success",
+        "chechen"
+      ]
     },
     {
       "id": 7,
       "title": "Больше никогда не появиться онлайн",
       "completed": false,
-      "tags": ["success", "pure-success", "successful-success"]
+      "tags": [
+        "success",
+        "pure-success",
+        "successful-success"
+      ]
     }
   ],
   "profile": {
-    "username": "say my name",
-    "profile_img": "https://www.sosyncd.com/wp-content/uploads/2022/06/139.png"
+    "username": "your-name-here",
+    "profile_img": "your-avatar-here"
   },
   "tags": [
     "education",
