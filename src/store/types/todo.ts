@@ -1,11 +1,11 @@
-export interface ITodos {
+export interface ITodo {
   id: number;
   title: string;
   completed: boolean;
   tags: string[];
 }
 export interface TodoState {
-  todos: ITodos[];
+  todos: ITodo[];
   loading: boolean;
   error: null | string;
 }
@@ -29,7 +29,7 @@ interface FetchTodosAction {
 }
 interface FetchTodosSuccessAction {
   type: TodosActionsTypes.FETCH_TODOS_SUCCESS;
-  payload: ITodos[];
+  payload: ITodo[];
 }
 interface FetchTodosErrorAction {
   type: TodosActionsTypes.FETCH_TODOS_ERROR;
@@ -40,7 +40,7 @@ interface FetchAddTodosAction {
 }
 interface FetchAddTodosSuccessAction {
   type: TodosActionsTypes.FETCH_ADD_TODOS_SUCCESS;
-  payload: ITodos;
+  payload: ITodo;
 }
 interface FetchAddTodosErrorAction {
   type: TodosActionsTypes.FETCH_ADD_TODOS_ERROR;
@@ -63,8 +63,8 @@ interface FetchChangeCheckboxAction {
 interface FetchChangeCheckboxSuccessAction {
   type: TodosActionsTypes.FETCH_CHANGE_CHECKBOX_SUCCESS;
   payload: {
-    id: number,
-    checked: boolean
+    id: number;
+    completed: boolean;
   };
 }
 interface FetchChangeCheckboxErrorAction {

@@ -1,5 +1,11 @@
-import {ChangeCheckboxAction, DeleteTodoAction, NewTodoAction, TodoAction, TodosActionsTypes,} from "../types/todo";
-import {Dispatch} from "redux";
+import {
+  ChangeCheckboxAction,
+  DeleteTodoAction,
+  NewTodoAction,
+  TodoAction,
+  TodosActionsTypes,
+} from "../types/todo";
+import { Dispatch } from "redux";
 import axios from "axios";
 
 export const fetchTodos = () => {
@@ -59,14 +65,14 @@ export const fetchDeleteTodo = (id: number) => {
     }
   };
 };
-export const fetchChangeCheckbox = (checked: boolean, id: number) => {
+export const fetchChangeCheckbox = (completed: boolean, id: number) => {
   return async (dispatch: Dispatch<ChangeCheckboxAction>) => {
     try {
       dispatch({ type: TodosActionsTypes.FETCH_CHANGE_CHECKBOX });
-      await axios.patch(`http://localhost:3000/todos/${id}`, checked);
+      await axios.patch(`http://localhost:3000/todos/${id}`, { completed });
       dispatch({
         type: TodosActionsTypes.FETCH_CHANGE_CHECKBOX_SUCCESS,
-        payload: {checked, id},
+        payload: { completed, id },
       });
     } catch (e) {
       dispatch({

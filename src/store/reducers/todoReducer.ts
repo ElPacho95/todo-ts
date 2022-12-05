@@ -57,11 +57,13 @@ export const todoReducer = (
           item.id === action.payload.id
             ? {
                 ...item,
-                checked: action.payload.checked,
+                completed: action.payload.completed,
               }
             : item
         ),
       };
+    case TodosActionsTypes.FETCH_CHANGE_CHECKBOX_ERROR:
+      return { ...state, loading: false, error: action.payload, todos: [] };
     default:
       return state;
   }

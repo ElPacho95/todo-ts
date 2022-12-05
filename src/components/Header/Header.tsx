@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import search from "../../assets/search.svg";
-import "./Header.scss";
+
 import { useTypedSelector } from "../../store/hooks/useTypedSelector";
-import { useAction } from "../../store/hooks/useAction";
-import { fetchTags } from "../../store/action-creators/tags";
 import { fetchNewTodo } from "../../store/action-creators/todo";
+import { fetchTags } from "../../store/action-creators/tags";
+import { useAction } from "../../store/hooks/useAction";
+
+import search from "../../assets/search.svg";
+
+import "./Header.scss";
 
 const Header: React.FC = () => {
+  const profileLoading = useTypedSelector((state) => state.profile.loading);
   const { error, profile } = useTypedSelector((state) => state.profile);
   const tagsLoading = useTypedSelector((state) => state.tags.loading);
-  const profileLoading = useTypedSelector((state) => state.profile.loading);
   const { tags } = useTypedSelector((state) => state.tags);
 
   const { fetchProfile, fetchTags, fetchNewTodo } = useAction();
@@ -22,17 +25,15 @@ const Header: React.FC = () => {
     fetchTags();
   }, []);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    setTitle("");
-  };
-  const createTodo = () => {
+  const createTodo = (e: { preventDefault: () => void }) => {
     const body = {
       title: title,
       completed: false,
       tags: [tag],
     };
     fetchNewTodo(body);
+    e.preventDefault();
+    setTitle("");
   };
 
   if (profileLoading && tagsLoading) {
@@ -42,20 +43,20 @@ const Header: React.FC = () => {
   if (error) {
     return <h1>{error}</h1>;
   }
+
   return (
     <div className="header">
       <div className="form">
-        <div  className="form-bg">
+        <div className="form-bg">
           <img src={search} alt="" />
           <input
             value={title}
             onChange={(e) => setTitle(e.currentTarget.value)}
-            onClick={handleSubmit}
             type="text"
-            placeholder="Search"
+            placeholder="Type"
           />
         </div>
-        <div>
+        <div className="select">
           <label htmlFor="">Choose a tags:</label>
           <select
             value={tag}
@@ -78,6 +79,7 @@ const Header: React.FC = () => {
           </button>
         </div>
       </div>
+
       <div className="profile">
         <div className="user-image">
           <img src={profile.profile_img} alt="" />

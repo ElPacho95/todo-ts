@@ -18,6 +18,7 @@ interface FetchTagsSuccessAction {
   type: TagsActionsTypes.FETCH_TAGS_SUCCESS;
   payload: string[];
 }
+
 interface FetchTagsErrorAction {
   type: TagsActionsTypes.FETCH_TAGS_ERROR;
   payload: string;

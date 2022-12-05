@@ -7,6 +7,25 @@
   background: white;
   position: sticky;
   top: 0;
+  .submit {
+    button {
+      background: gray;
+      color: #fff;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      box-shadow: 5px 5px 5px #eee;
+      text-shadow: none;
+      padding: 8px;
+    }
+    button:hover {
+      background: white;
+      color: black;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      box-shadow: 5px 5px 5px #eee;
+      text-shadow: none;
+    }
+  }
 
   .profile {
     display: flex;
@@ -22,14 +41,8 @@
   .form {
     display: flex;
     align-items: center;
-    .submit {
-      button {
-        border-radius: 8px;
-        border: 1px solid gray;
-        height: 30px;
-        color: rgb(0, 0, 0, 0.7);
-        background: #efefef;
-      }
+    .select {
+      margin-left: 24px;
     }
     .form-bg {
       width: 252px;
@@ -52,4 +65,14 @@
       border: none;
     }
   }
+}
+select {
+  width: 80%;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 1000%);
 }
