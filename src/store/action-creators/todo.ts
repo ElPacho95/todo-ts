@@ -1,3 +1,5 @@
+import { Dispatch } from "redux";
+import axios from "axios";
 import {
   ChangeCheckboxAction,
   DeleteTodoAction,
@@ -5,8 +7,6 @@ import {
   TodoAction,
   TodosActionsTypes,
 } from "../types/todo";
-import { Dispatch } from "redux";
-import axios from "axios";
 
 export const fetchTodos = () => {
   return async (dispatch: Dispatch<TodoAction>) => {

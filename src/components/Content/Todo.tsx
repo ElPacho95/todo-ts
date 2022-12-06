@@ -18,19 +18,25 @@ const TodoList: React.FC<TodoItemProps> = ({
 
   return (
     <div className="list" key={id}>
-      <div className="title">
-        {title}
-        {tags.map((item) => {
-          return <div>{item}</div>;
-        })}
-      </div>
-
-      <div className="icons">
+      <div>
         <input
           type="checkbox"
           checked={completed}
           onChange={() => fetchChangeCheckbox(!completed, id)}
         />
+        <div className="title">
+          {title}
+          {tags.map((item) => {
+            return (
+              <div className="alpha" key={item}>
+                {item}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div>
         <button onClick={handleDeleteTodo} className="delete">
           <img src={trash} alt="" />
         </button>

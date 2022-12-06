@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
-import { TagAction, TagsActionsTypes } from "../types/tags";
 import axios from "axios";
+import { TagAction, TagsActionsTypes } from "../types/tags";
 
 export const fetchTags = () => {
   return async (dispatch: Dispatch<TagAction>) => {

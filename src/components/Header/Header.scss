@@ -5,6 +5,7 @@
   align-items: center;
   border: 1px solid #efefef;
   background: white;
+  padding: 8px;
   position: sticky;
   top: 0;
   .submit {
@@ -30,6 +31,9 @@
   .profile {
     display: flex;
     align-items: center;
+    .user-name {
+      padding-left: 8px;
+    }
     .user-image {
       img {
         width: 52px;
@@ -75,4 +79,5 @@ select {
   line-height: 1.1;
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 1000%);
+  margin-top: 8px;
 }

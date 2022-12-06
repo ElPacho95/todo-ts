@@ -1,8 +1,9 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { todoReducer } from "./reducers/todoReducer";
-import { profileReducer } from "./reducers/profileReducer";
-import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { profileReducer } from "./reducers/profileReducer";
+import { todoReducer } from "./reducers/todoReducer";
+
 import { tagsReducer } from "./reducers/tagsReducer";
 
 const rootReducer = combineReducers({
@@ -17,4 +18,3 @@ export const store = createStore(
 );
 
 export type RootState = ReturnType<typeof rootReducer>;
-
